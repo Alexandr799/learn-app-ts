@@ -386,6 +386,8 @@ template {
     --color-bg: #253334;
     --color-fg: #ffffff;
     --color-primary: #7c9a92;
+    --color-card:#F7F3F0;
+    --color-fg-inverse: #000;
 }
 
 body {
@@ -406,4 +408,38 @@ h4,
 h5,
 h6 {
     font-family: 'Alegreya', serif;
+}
+
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    /* Наследует цвет от родителя */
+    text-decoration: none;
+    /* Убирает подчеркивание */
+    cursor: pointer;
+    /* Курсор-указатель */
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
 }
