@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import MeditationList from './compenents/MeditationList.vue';
+import { RouterView } from 'vue-router';
 
 
 </script>
 
 <template>
   <div class="wrap-app">
-    <MeditationList />
+    <RouterView />
   </div>
 </template>
 
 <style scoped>
 .wrap-app {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-bg);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 </style>

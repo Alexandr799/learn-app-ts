@@ -7,7 +7,7 @@
     </button>
 </template>
 
-<style>
+<style scoped>
 .button {
     font-weight: 500;
     font-size: 15px;
@@ -19,5 +19,6 @@
     gap: 10px;
     border-radius: 10px;
     background-color: var(--color-bg);
+    
 }
 </style>
