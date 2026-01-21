@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { useProfileStore } from '@/stores/profile.store'
-import IconCalm from './icon/IconCalm.vue'
-import IconFocus from './icon/IconFocus.vue'
-import IconRelax from './icon/IconRelax.vue'
-import VButtonIcon from './ui/VButtonIcon.vue'
 import { onMounted, ref, watch } from 'vue'
 import type { Profile } from '@/interfaces/profile.interface'
+import FeelingPanel from './FeelingPanel.vue'
 
 const profileStore = useProfileStore()
 const error = ref<string | null>(null)
@@ -45,42 +42,8 @@ watch(() => ({
       <div class="lead">Как вы сегодня себя чувствуете?</div>
     </div>
 
-    <div class="button-wrapper">
-      <div>
-        <VButtonIcon>
-          <template #icon>
-            <IconCalm />
-          </template>
-          <template #text> Спокойно </template>
-        </VButtonIcon>
-      </div>
-
-      <div>
-        <VButtonIcon>
-          <template #icon>
-            <IconRelax />
-          </template>
-          <template #text> Расслабленно </template>
-        </VButtonIcon>
-      </div>
-
-      <div>
-        <VButtonIcon>
-          <template #icon>
-            <IconFocus />
-          </template>
-          <template #text> Фокусировано </template>
-        </VButtonIcon>
-      </div>
-
-      <div>
-        <VButtonIcon>
-          <template #icon>
-            <IconRelax />
-          </template>
-          <template #text> Тревожно </template>
-        </VButtonIcon>
-      </div>
+    <div style="padding-top: 40px;">
+      <FeelingPanel />
     </div>
   </template>
   <template v-else>
@@ -106,14 +69,6 @@ watch(() => ({
   padding: 0;
   margin-top: 30px;
   margin-bottom: 10px;
-}
-
-.button-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  padding-top: 40px;
 }
 
 .lead {
