@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useProfileStore } from '@/stores/profile.store'
 import IconCalm from './icon/IconCalm.vue'
 import IconFocus from './icon/IconFocus.vue'
 import IconRelax from './icon/IconRelax.vue'
