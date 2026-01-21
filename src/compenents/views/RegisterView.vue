@@ -81,7 +81,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .wrap {
   height: 100%;
   background-image: url('/public/fon.jpg');
