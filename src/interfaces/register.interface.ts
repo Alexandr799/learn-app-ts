@@ -1,8 +1,7 @@
-import type { Profile } from "./profile.interface";
-
+import type { ProfileShort } from './profile.short.interface'
 
 export interface RegistrationResponse {
-  data: Profile;
-  message: string;
-  status: string;
+  data: ProfileShort
+  message: string
+  status: string
 }

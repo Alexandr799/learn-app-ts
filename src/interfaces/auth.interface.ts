@@ -1,9 +1,9 @@
-import type { Profile } from "./profile.interface"
+import type { ProfileShort } from './profile.short.interface'
 
 export interface AuthResponse {
   data: {
     token: string
-    user: Profile
+    user: ProfileShort
   }
   message: string
   status: string

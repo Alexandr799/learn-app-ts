@@ -16,4 +16,5 @@ export const API_ROUTES = {
   meditations: '/meditations',
   register: '/auth/register',
   login: '/auth/login',
+  profile: '/profile',
 }
