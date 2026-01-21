@@ -10,8 +10,8 @@ import { useRegStore } from '@/stores/registrate.store';
 const router = useRouter()
 const storeReg = useRegStore()
 
-const form = ref<{ email: string, password: string }>({
-  email: '', password: ''
+const form = ref<{ username: string, email: string, password: string }>({
+  username: '', email: '', password: ''
 })
 const loading = ref<boolean>(false)
 const error = ref<null | string>(null)
@@ -48,13 +48,21 @@ watch(() => ({
     <div class="form-wrapper">
       <form class="form" @submit.prevent="handle" v-if="!loading">
         <div style="padding-bottom: 20px;">
-          <VInputText  v-model="form.email" placeholder="Электронная почта" class="input" />
+          <VInputText v-model="form.email" placeholder="Электронная почта" class="input" />
+        </div>
+        <div style="padding-bottom: 20px;">
+          <VInputText v-model="form.username" placeholder="Имя" class="input" />
         </div>
         <div style="padding-bottom: 50px;">
           <VInputText v-model="form.password" type="password" placeholder="Пароль" class="input" />
         </div>
-        <div class="button-wrap">
+        <div class="button-wrap" style="padding-bottom: 20px;">
           <VButtonPrimary class="button">
+            Создать аккаунт
+          </VButtonPrimary>
+        </div>
+        <div class="button-wrap" style="padding-bottom: 20px;">
+          <VButtonPrimary class="button" @click.prevent="router.push({ name: AUTH_PATH })">
             Войти в приложение
           </VButtonPrimary>
         </div>
@@ -109,6 +117,10 @@ watch(() => ({
 .form {
   min-width: 250px;
   max-width: 305px;
+  width: 100%;
+}
+
+.button {
   width: 100%;
 }
 </style>
