@@ -13,8 +13,8 @@ export const useProfileStore = defineStore('profile', () => {
     try {
       error.value = null
       loading.value = true
-      const data = await client().get<ProfileResponse>(API_ROUTES.profile)
-      profile.value = data.data.data.user
+      const { data } = await client().get<ProfileResponse>(API_ROUTES.profile)
+      profile.value = data.data.user
     } catch (e) {
       if (e instanceof Error) {
         error.value = e.message

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const value = defineModel < string > ()
+const value = defineModel<string>()
+const { type = 'text' } = defineProps<{ type?: 'text' | 'password' }>()
 </script>
 
 <template>
-  <input class="input" type="text" v-model="value">
+  <input class="input" :type="type" v-model="value">
 </template>
 
 <style scoped>
