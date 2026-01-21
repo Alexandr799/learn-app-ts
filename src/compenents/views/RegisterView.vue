@@ -4,7 +4,7 @@ import IconLogo from '../icon/IconLogo.vue';
 import VButtonPrimary from '../ui/VButtonPrimary.vue';
 import { AUTH_PATH } from '@/routes';
 import VInputText from '../ui/VInputText.vue';
-import { ref, watch } from 'vue';
+import { onUnmounted, ref, watch } from 'vue';
 import { useRegStore } from '@/stores/registrate.store';
 
 const router = useRouter()
@@ -35,6 +35,10 @@ watch(() => ({
   error.value = data.error
   loading.value = data.loading
 }, { immediate: true })
+
+onUnmounted(() => {
+  storeReg.clearError()
+})
 
 
 </script>

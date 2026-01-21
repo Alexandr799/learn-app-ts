@@ -23,11 +23,15 @@ export const useAuthStore = defineStore('auth', () => {
     setToken(null)
   }
 
+  function clearError() {
+    error.value = null
+  }
+
   const getToken = computed(() => {
     return token.value
   })
 
-  async function login(email: string, password: string) {
+  async function login(password: string, username: string) {
     try {
       setToken(null)
       token.value = null
@@ -36,7 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       const { data } = await client().post<AuthResponse>(API_ROUTES.login, {
         password,
-        email,
+        username,
       })
       setToken(data.data.token)
     } catch (e) {
@@ -50,5 +54,5 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { error, loading, getToken, clearToken, login }
+  return { error, loading, getToken, clearToken, login, clearError }
 })

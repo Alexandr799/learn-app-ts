@@ -29,5 +29,9 @@ export const useRegStore = defineStore('reg', () => {
     }
   }
 
-  return { error, loading, register }
+  function clearError() {
+    error.value = null
+  }
+
+  return { error, loading, register, clearError }
 })
