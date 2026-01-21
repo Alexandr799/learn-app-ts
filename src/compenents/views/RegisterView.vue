@@ -2,43 +2,44 @@
 import { useRouter } from 'vue-router';
 import IconLogo from '../icon/IconLogo.vue';
 import VButtonPrimary from '../ui/VButtonPrimary.vue';
-import { MAIN_PATH, REG_PATH } from '@/routes';
+import { AUTH_PATH } from '@/routes';
 import VInputText from '../ui/VInputText.vue';
 import { onUnmounted, ref, watch } from 'vue';
-import { useAuthStore } from '@/stores/auth.store';
+import { useRegStore } from '@/stores/registrate.store';
 
 const router = useRouter()
-const storeAuth = useAuthStore()
+const storeReg = useRegStore()
 
-const form = ref<{ username: string, password: string }>({
-  username: '', password: ''
+const form = ref<{ username: string, email: string, password: string }>({
+  username: '', email: '', password: ''
 })
 const loading = ref<boolean>(false)
 const error = ref<null | string>(null)
 
 async function handle() {
-  await storeAuth.login(
-        form.value.password,
+  const res = await storeReg.register(
+    form.value.email,
+    form.value.password,
     form.value.username,
   )
-  form.value = { username: '', password: '' }
+  form.value = { username: '', email: '', password: '' }
+  if (res) {
+    router.push({ name: AUTH_PATH })
+  }
 }
 
 watch(() => ({
-  loading: storeAuth.loading,
-  error: storeAuth.error,
-  getToken: storeAuth.getToken
+  loading: storeReg.loading,
+  error: storeReg.error,
 }), (data) => {
   error.value = data.error
   loading.value = data.loading
-  if (data.getToken) {
-    router.push({ name: MAIN_PATH })
-  }
 }, { immediate: true })
 
 onUnmounted(() => {
-  storeAuth.clearError()
+  storeReg.clearError()
 })
+
 
 </script>
 <template>
@@ -51,19 +52,22 @@ onUnmounted(() => {
     <div class="form-wrapper">
       <form class="form" @submit.prevent="handle" v-if="!loading">
         <div style="padding-bottom: 20px;">
-          <VInputText v-model="form.username" placeholder="Имя пользователя" class="input" />
+          <VInputText v-model="form.email" placeholder="Электронная почта" class="input" />
+        </div>
+        <div style="padding-bottom: 20px;">
+          <VInputText v-model="form.username" placeholder="Имя" class="input" />
         </div>
         <div style="padding-bottom: 50px;">
           <VInputText v-model="form.password" type="password" placeholder="Пароль" class="input" />
         </div>
         <div class="button-wrap" style="padding-bottom: 20px;">
           <VButtonPrimary class="button">
-            Войти в приложение
+            Создать аккаунт
           </VButtonPrimary>
         </div>
-        <div class="button-wrap">
-          <VButtonPrimary class="button" @click.prevent="() => router.push({ name: REG_PATH })">
-            Регистрация
+        <div class="button-wrap" style="padding-bottom: 20px;">
+          <VButtonPrimary class="button" @click.prevent="router.push({ name: AUTH_PATH })">
+            Войти в приложение
           </VButtonPrimary>
         </div>
         <div style="padding-top: 20px;" v-if="error">
@@ -90,7 +94,6 @@ onUnmounted(() => {
   font-size: 25px !important;
   padding-left: 40px !important;
   padding-right: 40px !important;
-  width: 100%;
 }
 
 .input {
@@ -118,6 +121,10 @@ onUnmounted(() => {
 .form {
   min-width: 250px;
   max-width: 305px;
+  width: 100%;
+}
+
+.button {
   width: 100%;
 }
 </style>

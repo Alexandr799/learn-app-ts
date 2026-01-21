@@ -1,4 +1,4 @@
-import { API_ROUTES, http } from '@/api'
+import { API_ROUTES, client } from '@/api'
 import type { Meditation } from '@/interfaces/meditation.interface'
 import type { MeditationResponse } from '@/interfaces/meditation.response.interface'
 import { defineStore } from 'pinia'
@@ -13,9 +13,7 @@ export const useMeditationStore = defineStore('meditation', () => {
     error.value = null
     meditationList.value = null
     try {
-      const {
-        data
-      } = await http.get<MeditationResponse>(API_ROUTES.meditations)
+      const { data } = await client().get<MeditationResponse>(API_ROUTES.meditations)
       if (data.status !== 'success') {
         throw new Error('Что-то пошло не так!')
       }

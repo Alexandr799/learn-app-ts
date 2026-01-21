@@ -443,3 +443,7 @@ button {
     cursor: pointer;
     outline: none;
 }
+
+#app {
+  height: 100vh;
+}
