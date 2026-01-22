@@ -1,5 +1,4 @@
-// Основной интерфейс статистики
-export interface Stat {
+export interface StatDay {
   id: number
   created_at: string
   updated_at: string

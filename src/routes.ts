@@ -5,51 +5,53 @@ export const AUTH_PATH = 'auth'
 export const REG_PATH = 'reg'
 export const START_PATH = 'start'
 export const MAIN_PATH = 'main'
+export const NOT_FOUND = 'not_found'
+export const DETAIL_PATH_MEDITATION = 'detail_path_meditation'
 
 export const router = createRouter({
+  history: createWebHistory(),
   routes: [
-    // {
-    //   path: '/:pathMatch(.*)*',
-    //   component: import('@/compenents/views/NotFound.vue'),
-    //   name: 'NotFound',
-    // },
     {
       path: '/',
-      component: () => import('@/compenents/views/StartView.vue'),
+      component: () => import('@/components/views/StartView.vue'),
       name: START_PATH,
     },
     {
       path: '/auth',
-      component: () => import('@/compenents/views/AuthView.vue'),
+      component: () => import('@/components/views/AuthView.vue'),
       name: AUTH_PATH,
     },
     {
       path: '/register',
-      component: () => import('@/compenents/views/RegisterView.vue'),
+      component: () => import('@/components/views/RegisterView.vue'),
       name: REG_PATH,
     },
     {
       path: '/main',
-      component: () => import('@/compenents/views/MainView.vue'),
+      component: () => import('@/components/views/MainView.vue'),
       children: [
         {
-          path: '',
-          component: () => import('@/compenents/views/main/IndexView.vue'),
+          path: '', // Пустой путь для /main
+          component: () => import('@/components/views/main/IndexView.vue'),
           name: MAIN_PATH,
         },
         {
-          path: '/main/:id',
-          component: () => import('@/compenents/views/main/DetailView.vue'),
+          path: ':id', // Относительный путь, будет /main/:id
+          component: () => import('@/components/views/main/DetailView.vue'),
+          name: DETAIL_PATH_MEDITATION
         },
       ],
     },
-
     {
       path: '/stat',
-      component: () => import('@/compenents/views/StatView.vue'),
+      component: () => import('@/components/views/StatView.vue'),
     },
-  ],
-  history: createWebHistory(),
+    {
+      path: '/:pathMatch(.*)*', // Должен быть последним
+      component: () => import('@/components/views/NotFound.vue'),
+      name: NOT_FOUND,
+    },
+  ]
 })
 
 router.beforeEach((to) => {

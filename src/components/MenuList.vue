@@ -24,7 +24,7 @@ function exit() {
     <div>
       <ul class="list">
         <li class="item">
-          <router-link to="/main" class="link" active-class="active-link">
+          <router-link to="/main" class="link" exact-active-class="active-link">
             <IconChart :color="$route.path === '/main' ? 'white' : 'rgba(255, 255, 255, 0.5)'" />
             <span>
               Медитация
