@@ -10,21 +10,22 @@ const storeStat = useStatStore()
 const error = ref<string | null>(null)
 const loading = ref<boolean>(false)
 
-watch(() => ({
-  loading: storeStat.loading,
-  error: storeStat.error,
-}), (data) => {
-  error.value = data.error
-  loading.value = data.loading
-})
+watch(
+  () => ({
+    loading: storeStat.loading,
+    error: storeStat.error,
+  }),
+  (data) => {
+    error.value = data.error
+    loading.value = data.loading
+  },
+)
 function push(type: string) {
   storeStat.pushStat(type, 1)
 }
 </script>
 <template>
-  <template v-if="loading">
-    Обновал...
-  </template>
+  <template v-if="loading"> Обновал... </template>
   <template v-else>
     <div class="button-wrapper">
       <div>
@@ -67,7 +68,6 @@ function push(type: string) {
       {{ error }}
     </div>
   </template>
-
 </template>
 
 <style scoped>

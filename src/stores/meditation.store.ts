@@ -25,5 +25,11 @@ export const useMeditationStore = defineStore('meditation', () => {
       loading.value = false
     }
   }
-  return { meditationList, error, loading, getMeditation }
+
+  const getMeditationById = (id: number) => {
+    return meditationList.value?.find((el) => {
+      return el.id === id
+    })
+  }
+  return { meditationList, error, loading, getMeditation, getMeditationById }
 })

@@ -1,9 +1,10 @@
-import type { Stat } from './stat.interface'
+import type { StatDay } from './stat.day.interface'
+import type { StatSummary } from './stat.summary'
 
 export interface StatResponse {
   data: {
-    stat: Stat
+    stats: Array<StatDay>
+    summary: StatSummary
   }
-  message: string
   status: string
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AboutPanel from '@/compenents/AboutPanel.vue'
-import MeditationList from '@/compenents/MeditationList.vue'
+import AboutPanel from '@/components/AboutPanel.vue'
+import MeditationList from '@/components/MeditationList.vue'
 </script>
 <template>
     <div class="wrapper">
